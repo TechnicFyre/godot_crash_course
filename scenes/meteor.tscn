@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cikfx6cf6gn7b"]
+
+[ext_resource type="Texture2D" uid="uid://c75ds0jin1m5b" path="res://resources/meteors/meteorGrey_tiny1.png" id="1_tcwo0"]
+
+[node name="Meteor" type="Node2D" unique_id=216078778]
+
+[node name="TinyImage" type="Sprite2D" parent="." unique_id=752111465]
+texture = ExtResource("1_tcwo0")

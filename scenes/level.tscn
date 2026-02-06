@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://5lobrp15vwq4"]
+
+[ext_resource type="PackedScene" uid="uid://d2dq5whl44u3l" path="res://scenes/player.tscn" id="1_2q6dc"]
+[ext_resource type="Texture2D" uid="uid://crrc4w47p17o5" path="res://resources/darkPurple.png" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://cikfx6cf6gn7b" path="res://scenes/meteor.tscn" id="3_w8frs"]
+
+[node name="Level" type="Node2D" unique_id=1020757812]
+
+[node name="Background" type="Node2D" parent="." unique_id=632225645]
+
+[node name="SpaceImage" type="Polygon2D" parent="Background" unique_id=1351922635]
+texture_repeat = 2
+position = Vector2(568, 261.00003)
+scale = Vector2(5, 5)
+texture = ExtResource("1_w7c3h")
+polygon = PackedVector2Array(-128, -128, -128, 128, 128, 128, 128, -128)
+uv = PackedVector2Array(-500, -500, -500, 500, 500, 500, 500, -500)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="PlanetImage" type="Sprite2D" parent="Background" unique_id=332559545]
+
+[node name="Player" parent="." unique_id=1647710558 instance=ExtResource("1_2q6dc")]
+position = Vector2(587, 467)
+scale = Vector2(0.8, 0.8)
+
+[node name="Meteor" parent="." unique_id=216078778 instance=ExtResource("3_w8frs")]
+position = Vector2(508, 96.000015)
+scale = Vector2(0.8, 0.8)
