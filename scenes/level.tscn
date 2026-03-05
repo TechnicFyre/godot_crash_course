@@ -27,6 +27,7 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 [node name="PlanetImage" type="Sprite2D" parent="Background" unique_id=332559545]
 
 [node name="Player" parent="." unique_id=1647710558 instance=ExtResource("1_2q6dc")]
+z_index = 2
 position = Vector2(587, 467)
 scale = Vector2(0.8, 0.8)
 
@@ -65,5 +66,9 @@ shape = SubResource("RectangleShape2D_w8frs")
 autostart = true
 
 [node name="Meteors" type="Node2D" parent="." unique_id=397257808]
+z_index = 1
 
+[node name="Lasers" type="Node2D" parent="." unique_id=1096152415]
+
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]

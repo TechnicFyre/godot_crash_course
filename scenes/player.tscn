@@ -13,3 +13,10 @@ texture = ExtResource("1_3vyb7")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=963534990]
 position = Vector2(0.1, 7.9)
 polygon = PackedVector2Array(-7.1, -43.9, 6.9, -43.9, 6.9, -9.9, 44.9, -9.9, 44.9, 14.1, 6.9, 14.1, 6.9, 27.1, -7.1, 27.1, -7.1, 14.1, -44.1, 14.1, -44.1, -9.9, -7.1, -9.9)
+
+[node name="LaserStartPos" type="Marker2D" parent="." unique_id=1512583407]
+position = Vector2(0, -65)
+
+[node name="LaserTimer" type="Timer" parent="." unique_id=1179942983]
+wait_time = 0.5
+one_shot = true

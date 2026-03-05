@@ -39,4 +39,4 @@ func _process(delta):
 	
 
 func _on_body_entered(body: Node2D) -> void:
-	print('body entered')
+	print('body entered ' + str(body))
