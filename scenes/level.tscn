@@ -3,6 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://d2dq5whl44u3l" path="res://scenes/player.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://cnyg2meod3f05" path="res://scenes/level.gd" id="1_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://crrc4w47p17o5" path="res://resources/darkPurple.png" id="1_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://v1lauxe4bn4k" path="res://resources/star/star1.png" id="3_ppgk2"]
+[ext_resource type="Texture2D" uid="uid://dus28kv8dg5fd" path="res://resources/star/star2.png" id="4_2r41h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8frs"]
+animations = [{
+"frames": [{
+"duration": 25.0,
+"texture": ExtResource("3_ppgk2")
+}, {
+"duration": 5.0,
+"texture": ExtResource("4_2r41h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
 size = Vector2(1168, 8)
@@ -25,6 +41,15 @@ uv = PackedVector2Array(-500, -500, -500, 500, 500, 500, 500, -500)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="PlanetImage" type="Sprite2D" parent="Background" unique_id=332559545]
+
+[node name="Stars" type="Node2D" parent="." unique_id=1852236483]
+
+[node name="Star" type="AnimatedSprite2D" parent="Stars" unique_id=396617076]
+visible = false
+sprite_frames = SubResource("SpriteFrames_w8frs")
+autoplay = "default"
+frame = 1
+frame_progress = 1.0
 
 [node name="Player" parent="." unique_id=1647710558 instance=ExtResource("1_2q6dc")]
 z_index = 2
