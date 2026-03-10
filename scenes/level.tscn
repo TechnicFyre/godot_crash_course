@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://crrc4w47p17o5" path="res://resources/darkPurple.png" id="1_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://v1lauxe4bn4k" path="res://resources/star/star1.png" id="3_ppgk2"]
 [ext_resource type="Texture2D" uid="uid://dus28kv8dg5fd" path="res://resources/star/star2.png" id="4_2r41h"]
+[ext_resource type="PackedScene" uid="uid://bk83jos8ao2lk" path="res://scenes/ui.tscn" id="6_2r41h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w8frs"]
 animations = [{
@@ -30,6 +31,7 @@ size = Vector2(8, 648)
 script = ExtResource("1_mx8sn")
 
 [node name="Background" type="Node2D" parent="." unique_id=632225645]
+metadata/_edit_lock_ = true
 
 [node name="SpaceImage" type="Polygon2D" parent="Background" unique_id=1351922635]
 texture_repeat = 2
@@ -39,10 +41,13 @@ texture = ExtResource("1_w7c3h")
 polygon = PackedVector2Array(-128, -128, -128, 128, 128, 128, 128, -128)
 uv = PackedVector2Array(-500, -500, -500, 500, 500, 500, 500, -500)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
+metadata/_edit_lock_ = true
 
 [node name="PlanetImage" type="Sprite2D" parent="Background" unique_id=332559545]
+metadata/_edit_lock_ = true
 
 [node name="Stars" type="Node2D" parent="." unique_id=1852236483]
+metadata/_edit_lock_ = true
 
 [node name="Star" type="AnimatedSprite2D" parent="Stars" unique_id=396617076]
 visible = false
@@ -58,9 +63,11 @@ scale = Vector2(0.8, 0.8)
 
 [node name="Borders" type="Node2D" parent="." unique_id=1546891091]
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="StaticBodyTop" type="StaticBody2D" parent="Borders" unique_id=1059007771]
 collision_layer = 4
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBodyTop" unique_id=1578021084]
 position = Vector2(576, -4)
@@ -68,6 +75,7 @@ shape = SubResource("RectangleShape2D_mx8sn")
 
 [node name="StaticBodyBottom" type="StaticBody2D" parent="Borders" unique_id=1175719990]
 collision_layer = 4
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBodyBottom" unique_id=1100858988]
 position = Vector2(576, 652)
@@ -75,6 +83,7 @@ shape = SubResource("RectangleShape2D_mx8sn")
 
 [node name="StaticBodyRight" type="StaticBody2D" parent="Borders" unique_id=408807592]
 collision_layer = 4
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBodyRight" unique_id=797036557]
 position = Vector2(1156, 324)
@@ -82,6 +91,7 @@ shape = SubResource("RectangleShape2D_w8frs")
 
 [node name="StaticBodyLeft" type="StaticBody2D" parent="Borders" unique_id=581480592]
 collision_layer = 4
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBodyLeft" unique_id=564336014]
 position = Vector2(-4, 324)
@@ -92,8 +102,12 @@ autostart = true
 
 [node name="Meteors" type="Node2D" parent="." unique_id=397257808]
 z_index = 1
+metadata/_edit_lock_ = true
 
 [node name="Lasers" type="Node2D" parent="." unique_id=1096152415]
+metadata/_edit_lock_ = true
+
+[node name="UI" parent="." unique_id=1728256441 instance=ExtResource("6_2r41h")]
 
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
