@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bk83jos8ao2lk"]
 
 [ext_resource type="FontFile" uid="uid://fjnoc0ewo0vw" path="res://resources/font/Kenney Future.ttf" id="1_x4jx1"]
-[ext_resource type="Texture2D" uid="uid://bucccgyyusi7p" path="res://resources/lives/playerLife1_green.png" id="2_yev5y"]
+[ext_resource type="Script" uid="uid://dgrhtj5ayokhk" path="res://scenes/ui.gd" id="1_yev5y"]
 
-[node name="UI" type="CanvasLayer" unique_id=1728256441]
+[node name="UI" type="CanvasLayer" unique_id=1728256441 groups=["UI"]]
+script = ExtResource("1_yev5y")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=273469414]
 anchors_preset = 5
@@ -15,12 +16,12 @@ offset_bottom = 55.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 10
 
-[node name="Label" type="Label" parent="MarginContainer" unique_id=1510224292]
+[node name="Score" type="Label" parent="MarginContainer" unique_id=1510224292]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.93333334, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 40
-text = "Score"
+text = "0"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1748057154]
@@ -36,17 +37,7 @@ theme_override_constants/margin_left = 10
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=134834210]
-layout_mode = 2
-texture = ExtResource("2_yev5y")
-stretch_mode = 2
+[node name="ScoreTimer" type="Timer" parent="." unique_id=763536858]
+autostart = true
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=1968671176]
-layout_mode = 2
-texture = ExtResource("2_yev5y")
-stretch_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=1620938433]
-layout_mode = 2
-texture = ExtResource("2_yev5y")
-stretch_mode = 2
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

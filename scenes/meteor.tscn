@@ -1,17 +1,10 @@
 [gd_scene format=3 uid="uid://cikfx6cf6gn7b"]
 
 [ext_resource type="Script" uid="uid://d207mp6elrhup" path="res://scenes/meteor.gd" id="1_pxso2"]
-[ext_resource type="Texture2D" uid="uid://c75ds0jin1m5b" path="res://resources/meteors/meteorGrey_tiny1.png" id="1_tcwo0"]
 [ext_resource type="Texture2D" uid="uid://c1e6uygjxtf4v" path="res://resources/meteors/meteorGrey_big1.png" id="3_wfndj"]
-[ext_resource type="Texture2D" uid="uid://dsbjhurn4c1gf" path="res://resources/meteors/meteorGrey_big2.png" id="4_r80lr"]
-[ext_resource type="Texture2D" uid="uid://n6lbi0b80s4a" path="res://resources/meteors/meteorGrey_big3.png" id="5_stakr"]
-[ext_resource type="Texture2D" uid="uid://dislacukgfs40" path="res://resources/meteors/meteorGrey_big4.png" id="6_88cbt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsx3o"]
-radius = 7.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tcwo0"]
-radius = 43.011627
+radius = 40.0
 
 [node name="Meteor" type="Area2D" unique_id=912891946]
 collision_layer = 2
@@ -19,96 +12,10 @@ collision_mask = 9
 script = ExtResource("1_pxso2")
 
 [node name="MeteorImage" type="Sprite2D" parent="." unique_id=752111465]
-texture = ExtResource("1_tcwo0")
+texture = ExtResource("3_wfndj")
 
 [node name="MeteorCollision" type="CollisionShape2D" parent="." unique_id=762939910]
 shape = SubResource("CircleShape2D_wsx3o")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=13011106]
-
-[node name="Tiny1" type="Area2D" parent="Area2D" unique_id=226744876]
-
-[node name="Tiny2" type="Area2D" parent="Area2D" unique_id=566459880]
-visible = false
-
-[node name="Tiny2Image" type="Sprite2D" parent="Area2D/Tiny2" unique_id=1464427911]
-texture = ExtResource("1_tcwo0")
-
-[node name="Tiny2Collision" type="CollisionShape2D" parent="Area2D/Tiny2" unique_id=708549246]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Small1" type="Area2D" parent="Area2D" unique_id=1563554353]
-visible = false
-
-[node name="Small1Image" type="Sprite2D" parent="Area2D/Small1" unique_id=1467160927]
-texture = ExtResource("1_tcwo0")
-
-[node name="Small1Collision" type="CollisionShape2D" parent="Area2D/Small1" unique_id=800340110]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Small2" type="Area2D" parent="Area2D" unique_id=1884144383]
-visible = false
-
-[node name="Small2Image" type="Sprite2D" parent="Area2D/Small2" unique_id=74632161]
-texture = ExtResource("1_tcwo0")
-
-[node name="Small2Collision" type="CollisionShape2D" parent="Area2D/Small2" unique_id=1879657546]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Medium1" type="Area2D" parent="Area2D" unique_id=1171051145]
-visible = false
-
-[node name="Medium1Image" type="Sprite2D" parent="Area2D/Medium1" unique_id=443624975]
-texture = ExtResource("1_tcwo0")
-
-[node name="Medium1Collision" type="CollisionShape2D" parent="Area2D/Medium1" unique_id=1089846215]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Medium2" type="Area2D" parent="Area2D" unique_id=1625153213]
-visible = false
-
-[node name="Medium2Image" type="Sprite2D" parent="Area2D/Medium2" unique_id=1911183813]
-texture = ExtResource("1_tcwo0")
-
-[node name="Medium2Collision" type="CollisionShape2D" parent="Area2D/Medium2" unique_id=217967877]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Big1" type="Area2D" parent="Area2D" unique_id=284509315]
-visible = false
-
-[node name="Big1Image" type="Sprite2D" parent="Area2D/Big1" unique_id=835684909]
-texture = ExtResource("3_wfndj")
-
-[node name="Big1Collision" type="CollisionShape2D" parent="Area2D/Big1" unique_id=900922990]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Big2" type="Area2D" parent="Area2D" unique_id=2126577439]
-visible = false
-
-[node name="Big2Image" type="Sprite2D" parent="Area2D/Big2" unique_id=291487175]
-texture = ExtResource("4_r80lr")
-
-[node name="Big2Collision" type="CollisionShape2D" parent="Area2D/Big2" unique_id=1720010331]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Big3" type="Area2D" parent="Area2D" unique_id=1066066982]
-visible = false
-
-[node name="Big3Image" type="Sprite2D" parent="Area2D/Big3" unique_id=1373442782]
-position = Vector2(2, 0)
-texture = ExtResource("5_stakr")
-
-[node name="Big3Collision" type="CollisionShape2D" parent="Area2D/Big3" unique_id=1596610863]
-shape = SubResource("CircleShape2D_wsx3o")
-
-[node name="Big4" type="Area2D" parent="Area2D" unique_id=1525394553]
-visible = false
-
-[node name="Big4Image" type="Sprite2D" parent="Area2D/Big4" unique_id=815918784]
-texture = ExtResource("6_88cbt")
-offset = Vector2(1, -2)
-
-[node name="Big4Collision" type="CollisionShape2D" parent="Area2D/Big4" unique_id=344163082]
-shape = SubResource("CircleShape2D_tcwo0")
-
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

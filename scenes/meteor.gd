@@ -4,6 +4,8 @@ var rotation_speed : float = 0
 var speed : int
 var direction : Vector2
 
+signal collision
+
 var meteor_graphics := ["uid://c1e6uygjxtf4v",
 						"uid://dsbjhurn4c1gf",
 						"uid://n6lbi0b80s4a",
@@ -21,7 +23,6 @@ func _ready():
 	
 	# randomize meteor graphic
 	$MeteorImage.texture = load(meteor_graphics.pick_random())
-	print(typeof($MeteorImage.texture))
 	
 	# randomize speed
 	speed = rng.randi_range(250,350)
@@ -38,5 +39,10 @@ func _process(delta):
 	rotation_degrees += rotation_speed
 	
 
-func _on_body_entered(body: Node2D) -> void:
-	print('body entered ' + str(body))
+func _on_body_entered(_body: Node2D) -> void:
+	collision.emit()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	area.queue_free()
+	queue_free()
