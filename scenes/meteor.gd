@@ -5,6 +5,7 @@ var speed : int
 var direction : Vector2
 
 signal collision
+signal destroyed
 
 var meteor_graphics := ["uid://c1e6uygjxtf4v",
 						"uid://dsbjhurn4c1gf",
@@ -44,5 +45,6 @@ func _on_body_entered(_body: Node2D) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	destroyed.emit()
 	area.queue_free()
 	queue_free()

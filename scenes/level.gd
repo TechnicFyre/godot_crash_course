@@ -49,14 +49,23 @@ func _on_meteor_timer_timeout() -> void:
 	
 	# connect the signal
 	meteor.connect('collision', _on_meteor_collision)
+	meteor.connect('destroyed', _on_meteor_destroyed)
 
 func _on_meteor_collision():
 	health -= 1
 	get_tree().call_group('UI', 'set_health', health)
-	# print(health)
+	$Audio/ShipDamaged.pitch_scale = rng.randf_range(0.8,1.2)
+	$Audio/ShipDamaged.play()
 	if health <= 0:
+		# explode ship
+		$Audio/ShipDestroyed.play()
+		await $Audio/ShipDestroyed.finished
+		# switch to game over
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
+func _on_meteor_destroyed():
+	$Audio/MeteorDestroyed.pitch_scale = rng.randf_range(0.8,1.2)
+	$Audio/MeteorDestroyed.play()
 
 func _on_player_laser(pos) -> void:
 	var laser = laser_scene.instantiate()

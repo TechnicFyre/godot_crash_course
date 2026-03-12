@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cikfx6cf6gn7b"]
 
 [ext_resource type="Script" uid="uid://d207mp6elrhup" path="res://scenes/meteor.gd" id="1_pxso2"]
+[ext_resource type="AudioStream" uid="uid://ce08p6lyx88kg" path="res://resources/audio/meteor_destroy.ogg" id="3_83eji"]
 [ext_resource type="Texture2D" uid="uid://c1e6uygjxtf4v" path="res://resources/meteors/meteorGrey_big1.png" id="3_wfndj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsx3o"]
@@ -16,6 +17,10 @@ texture = ExtResource("3_wfndj")
 
 [node name="MeteorCollision" type="CollisionShape2D" parent="." unique_id=762939910]
 shape = SubResource("CircleShape2D_wsx3o")
+
+[node name="MeteorDestroy" type="AudioStreamPlayer2D" parent="." unique_id=1975920127]
+stream = ExtResource("3_83eji")
+volume_db = -3.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

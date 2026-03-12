@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://v1lauxe4bn4k" path="res://resources/star/star1.png" id="3_ppgk2"]
 [ext_resource type="Texture2D" uid="uid://dus28kv8dg5fd" path="res://resources/star/star2.png" id="4_2r41h"]
 [ext_resource type="PackedScene" uid="uid://bk83jos8ao2lk" path="res://scenes/ui.tscn" id="6_2r41h"]
+[ext_resource type="AudioStream" uid="uid://ce08p6lyx88kg" path="res://resources/audio/meteor_destroy.ogg" id="7_klq6b"]
+[ext_resource type="AudioStream" uid="uid://bms8q2na0y7w8" path="res://resources/audio/ship_destroy.ogg" id="8_b121j"]
+[ext_resource type="AudioStream" uid="uid://bwnsm2vi56h3o" path="res://resources/audio/ship_damage.ogg" id="9_8c41q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w8frs"]
 animations = [{
@@ -108,6 +111,21 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="UI" parent="." unique_id=1728256441 instance=ExtResource("6_2r41h")]
+
+[node name="Audio" type="Node2D" parent="." unique_id=801174914]
+
+[node name="MeteorDestroyed" type="AudioStreamPlayer2D" parent="Audio" unique_id=1259007484]
+stream = ExtResource("7_klq6b")
+volume_db = -3.0
+max_polyphony = 20
+
+[node name="ShipDestroyed" type="AudioStreamPlayer2D" parent="Audio" unique_id=170653012]
+stream = ExtResource("8_b121j")
+volume_db = -5.0
+
+[node name="ShipDamaged" type="AudioStreamPlayer2D" parent="Audio" unique_id=1665990352]
+stream = ExtResource("9_8c41q")
+volume_db = 7.0
 
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
