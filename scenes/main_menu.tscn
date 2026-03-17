@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cao07m36obgd"]
+
+[ext_resource type="Script" uid="uid://b8cgaylri85yk" path="res://scenes/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Shader" uid="uid://cun8lm68djmy3" path="res://scenes/main_menu.gdshader" id="1_l6cm7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ekxnf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqqt6"]
+shader = ExtResource("1_l6cm7")
+shader_parameter/speed = 0.1
+
+[sub_resource type="Gradient" id="Gradient_l6cm7"]
+colors = PackedColorArray(0.19607843, 0, 0.19607843, 1, 1, 0.8039216, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vue75"]
+noise_type = 3
+seed = 3
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l6cm7"]
+noise = SubResource("FastNoiseLite_vue75")
+color_ramp = SubResource("Gradient_l6cm7")
+seamless = true
+seamless_blend_skirt = 0.5
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wu84c"]
+
+[node name="MainMenu" type="Control" unique_id=1009562180]
+material = SubResource("CanvasItemMaterial_ekxnf")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1700061152]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_bqqt6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_l6cm7")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1544962642]
+material = SubResource("CanvasItemMaterial_wu84c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=162983055]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1753969486]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Space Game"
+
+[node name="PlayGame" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2119930471]
+layout_mode = 2
+text = "Play"
+
+[node name="Settings" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1731704224]
+layout_mode = 2
+text = "Settings"
+
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1763944794]
+layout_mode = 2
+text = "Credits"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayGame" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
