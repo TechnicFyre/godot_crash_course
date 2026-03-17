@@ -1,6 +1,5 @@
 extends Node2D
 
-# 1. load the scene
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
 var laser_scene: PackedScene = load("res://scenes/laser.tscn")
 
@@ -41,15 +40,16 @@ func _ready() -> void:
 		$Stars.add_child(star)
 
 func _on_meteor_timer_timeout() -> void:
+	pass
 	# 2. create an instance
-	var meteor = meteor_scene.instantiate()
+	# var meteor = meteor_scene.instantiate()
 	
 	# 3. attach the node to the scene tree
-	$Meteors.add_child(meteor)
+	# $Meteors.add_child(meteor)
 	
 	# connect the signal
-	meteor.connect('collision', _on_meteor_collision)
-	meteor.connect('destroyed', _on_meteor_destroyed)
+	# meteor.connect('collision', _on_meteor_collision)
+	# meteor.connect('destroyed', _on_meteor_destroyed)
 
 func _on_meteor_collision():
 	health -= 1
@@ -67,7 +67,8 @@ func _on_meteor_destroyed():
 	$Audio/MeteorDestroyed.pitch_scale = rng.randf_range(0.8,1.2)
 	$Audio/MeteorDestroyed.play()
 
-func _on_player_laser(pos) -> void:
+func _on_player_laser(laser_position, laser_rotation) -> void:
 	var laser = laser_scene.instantiate()
+	laser.position = laser_position
+	laser.rotation = laser_rotation
 	$Lasers.add_child(laser)
-	laser.position = pos

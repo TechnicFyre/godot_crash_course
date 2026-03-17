@@ -8,4 +8,5 @@ func _on_play_game_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	$CenterContainer.add_child()
+	pass
+	# $CenterContainer.add_child()
