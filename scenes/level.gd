@@ -39,6 +39,8 @@ func _ready() -> void:
 		# add it to Stars
 		$Stars.add_child(star)
 
+
+
 func _on_meteor_timer_timeout() -> void:
 	pass
 	# 2. create an instance
@@ -72,3 +74,8 @@ func _on_player_laser(laser_position, laser_rotation) -> void:
 	laser.position = laser_position
 	laser.rotation = laser_rotation
 	$Lasers.add_child(laser)
+
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	pass
+	
