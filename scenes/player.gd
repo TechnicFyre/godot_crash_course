@@ -15,9 +15,10 @@ func _process(_delta: float) -> void:
 	# Get mouse relative position to player
 	rotation = (get_global_mouse_position() - global_position).angle()
 	
-	var tween_move = self.create_tween().set_parallel()
-	tween_move.set_ease(Tween.EASE_OUT_IN)
-	tween_move.tween_property(self, 'velocity', direction * speed, 0.5)
+	velocity = direction * speed 
+	#var tween_move = self.create_tween().set_parallel()
+	#tween_move.set_ease(Tween.EASE_OUT_IN)
+	# tween_move.tween_property(self, 'velocity', direction * speed, 0.5)
 	#if direction.length() > 0.0:
 		 #tween_move.tween_property(self, 'rotation', direction.angle() + PI/2, 0.5)
 		

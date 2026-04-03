@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ekiyrqs6j24q"]
 
+[ext_resource type="Script" uid="uid://ci83qm4vmc7hr" path="res://scenes/settings.gd" id="1_5p8wc"]
+
 [sub_resource type="Theme" id="Theme_36l1p"]
 
-[node name="settings" type="Control" unique_id=2087908117]
+[node name="Settings" type="Control" unique_id=2087908117]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +15,7 @@ offset_right = 13.0
 offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5p8wc")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1499653765]
 layout_mode = 1

@@ -26,6 +26,7 @@ seamless_blend_skirt = 0.5
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wu84c"]
 
 [node name="MainMenu" type="Control" unique_id=1009562180]
+process_mode = 3
 material = SubResource("CanvasItemMaterial_ekxnf")
 layout_mode = 3
 anchors_preset = 15
@@ -63,7 +64,7 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Space Game"
 
-[node name="PlayGame" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2119930471]
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2119930471]
 layout_mode = 2
 text = "Play"
 
@@ -75,5 +76,6 @@ text = "Settings"
 layout_mode = 2
 text = "Credits"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayGame" to="." method="_on_play_game_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]

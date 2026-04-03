@@ -7,6 +7,9 @@ var health: int = 5
 
 var rng := RandomNumberGenerator.new()
 
+var lower_fog
+var lower_fog_noise
+
 func _ready() -> void:
 	get_tree().call_group('UI', 'set_health', health)
 	
@@ -38,8 +41,17 @@ func _ready() -> void:
 		
 		# add it to Stars
 		$Stars.add_child(star)
+	
+	# Background set up
+	# lower_fog= $Background/LowerFog
+	# lower_fog_noise = $Background/LowerFog.get_texture().get_noise()
 
-
+# func _physics_process(delta: float) -> void:
+	# var fog_position = $Player.global_position
+	
+	# lower_fog.offset = fog_position / lower_fog.scale.x
+	# lower_fog_noise.offset = Vector3(floor(fog_position.x / lower_fog.scale.x), floor(fog_position.y / lower_fog.scale.x), 0.0)
+	# print(lower_fog.offset)
 
 func _on_meteor_timer_timeout() -> void:
 	pass
@@ -62,8 +74,8 @@ func _on_meteor_collision():
 		# explode ship
 		$Audio/ShipDestroyed.play()
 		await $Audio/ShipDestroyed.finished
-		# switch to game over
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		# switch to results
+		get_tree().change_scene_to_file("uid://cy8vfc5o4h74i")
 
 func _on_meteor_destroyed():
 	$Audio/MeteorDestroyed.pitch_scale = rng.randf_range(0.8,1.2)

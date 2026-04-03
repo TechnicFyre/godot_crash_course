@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b4rdaa04sbx0c"]
+
+[ext_resource type="Script" uid="uid://p0tqc0kor5t0" path="res://scenes/main.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cao07m36obgd" path="res://scenes/main_menu.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://5lobrp15vwq4" path="res://scenes/game_world.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ekiyrqs6j24q" path="res://scenes/settings.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://do8l2mx1f0kvv" path="res://scenes/game_results.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cr7fkh41mv55j" path="res://scenes/upgrades.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://b6qjxholgigcj" path="res://scenes/credits.tscn" id="7_o6xl0"]
+
+[node name="Main" type="Node" unique_id=1860410848]
+process_mode = 3
+script = ExtResource("1_0wfyh")
+
+[node name="MainMenu" parent="." unique_id=1009562180 instance=ExtResource("1_o5qli")]
+
+[node name="GameWorld" parent="." unique_id=1020757812 instance=ExtResource("3_sugp2")]
+
+[node name="Settings" parent="." unique_id=2087908117 instance=ExtResource("4_jyhfs")]
+
+[node name="GameResults" parent="." unique_id=1038157613 instance=ExtResource("5_tbgi4")]
+
+[node name="Upgrades" parent="." unique_id=997492994 instance=ExtResource("6_tefeu")]
+
+[node name="Credits" parent="." unique_id=710984102 instance=ExtResource("7_o6xl0")]
+
+[connection signal="credits_button_pressed" from="MainMenu" to="." method="_on_main_menu_credits_button_pressed"]
+[connection signal="play_button_pressed" from="MainMenu" to="." method="_on_main_menu_play_button_pressed"]
+[connection signal="settings_button_pressed" from="MainMenu" to="." method="_on_main_menu_settings_button_pressed"]

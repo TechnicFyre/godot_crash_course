@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://do8l2mx1f0kvv"]
 
-[ext_resource type="Script" uid="uid://cy8vfc5o4h74i" path="res://scenes/game_over.gd" id="1_wqhvx"]
-[ext_resource type="FontFile" uid="uid://fjnoc0ewo0vw" path="res://resources/font/Kenney Future.ttf" id="1_xeevv"]
+[ext_resource type="Script" uid="uid://cy8vfc5o4h74i" path="res://scenes/game_results.gd" id="1_q14hy"]
+[ext_resource type="FontFile" uid="uid://fjnoc0ewo0vw" path="res://resources/font/Kenney Future.ttf" id="2_ogrkk"]
 
-[node name="Game Over" type="CanvasLayer" unique_id=1038157613]
-script = ExtResource("1_wqhvx")
+[node name="GameResults" type="CanvasLayer" unique_id=1038157613]
+script = ExtResource("1_q14hy")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1241381607]
 anchors_preset = 15
@@ -28,7 +28,7 @@ alignment = 1
 
 [node name="Game Over" type="Label" parent="Center Screen/VBoxContainer" unique_id=1284369069]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_xeevv")
+theme_override_fonts/font = ExtResource("2_ogrkk")
 theme_override_font_sizes/font_size = 50
 text = "Game Over"
 horizontal_alignment = 1
@@ -36,7 +36,7 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="Center Screen/VBoxContainer" unique_id=1773018096]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_xeevv")
+theme_override_fonts/font = ExtResource("2_ogrkk")
 theme_override_font_sizes/font_size = 20
 text = "Your Score: "
 horizontal_alignment = 1
@@ -59,7 +59,7 @@ theme_override_constants/margin_bottom = 20
 [node name="Start Again" type="Label" parent="Margin Bottom" unique_id=172734314]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("1_xeevv")
+theme_override_fonts/font = ExtResource("2_ogrkk")
 theme_override_font_sizes/font_size = 20
 text = "Space to Start Again"
 horizontal_alignment = 1
