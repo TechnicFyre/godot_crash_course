@@ -1,14 +1,21 @@
 extends Node
 
+# Screen resolution management
+@onready var BaseSize := get_window().size
+
 # Screen management
-@onready var MainMenu = $MainMenu
-@onready var GameWorld = $GameWorld
-@onready var Settings = $Settings
-@onready var GameResults = $GameResults
-@onready var Upgrades = $Upgrades
-@onready var Credits = $Credits
+@onready var MainMenu := $MainMenu
+@onready var GameWorld := $GameWorld
+@onready var Settings := $Settings
+@onready var GameResults := $GameResults
+@onready var Upgrades := $Upgrades
+@onready var Credits := $Credits
 
 func _ready() -> void:
+	# Screen resolution management
+	get_window().set_min_size(BaseSize)
+	get_window().size_changed.connect(_update_window_size)
+	
 	# Screen management
 	remove_child(GameWorld)
 	remove_child(Settings)
@@ -18,7 +25,20 @@ func _ready() -> void:
 	
 	# Other
 	# get_tree().paused = true
+
+# ------------------------------------------------------------------------------
+# Screen resolution management
+# ------------------------------------------------------------------------------
+func _update_window_size() -> void:
+	## Scales the UI and Game according to the size of the window
+	var resolution : Vector2 = get_window().size
+	var ratio : float = min(resolution.x/BaseSize.x, resolution.y / BaseSize.y)
+	ratio = max(1, floor(ratio))
+	get_window().content_scale_factor = ratio
+	# Background Repeat
+	GameWorld.resize_background(resolution, ratio)
 	
+
 # ------------------------------------------------------------------------------
 # Screen management
 # ------------------------------------------------------------------------------

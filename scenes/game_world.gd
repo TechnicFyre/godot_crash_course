@@ -10,37 +10,39 @@ var rng := RandomNumberGenerator.new()
 var lower_fog
 var lower_fog_noise
 
-func _ready() -> void:
+# func _enter_tree() -> void:
+
+func _enter_tree() -> void:
 	get_tree().call_group('UI', 'set_health', health)
 	
 	# for calculating positions later
-	var width := get_viewport_rect().size[0]
-	var height := get_viewport_rect().size[1]
-	var random_x : int
-	var random_y : int
+	#var width := get_viewport_rect().size[0]
+	#var height := get_viewport_rect().size[1]
+	#var random_x : int
+	#var random_y : int
 	
 	# Spawn in random stars
-	var star : AnimatedSprite2D
-	var count := rng.randi_range(20,30)
-	for i in range(count):
-		# copy the invisible star, make it visible
-		star = $Stars/Star.duplicate()
-		star.visible = true
-		
-		# randomize position
-		random_x = rng.randi_range(0, int(width))
-		random_y = rng.randi_range(0, int(height))
-		star.position = Vector2(random_x, random_y)
-		
-		# randomize size, default is 1.0
-		var size = rng.randf_range(0.3, 0.8)
-		star.scale = Vector2(size, size)
-		
-		# randomize animation speed, default is 1.0
-		star.speed_scale = rng.randf_range(0.5,2)
-		
-		# add it to Stars
-		$Stars.add_child(star)
+	#var star : AnimatedSprite2D
+	#var count := rng.randi_range(20,30)
+	#for i in range(count):
+		## copy the invisible star, make it visible
+		#star = $Stars/Star.duplicate()
+		#star.visible = true
+		#
+		## randomize position
+		#random_x = rng.randi_range(0, int(width))
+		#random_y = rng.randi_range(0, int(height))
+		#star.position = Vector2(random_x, random_y)
+		#
+		## randomize size, default is 1.0
+		#var size = rng.randf_range(0.3, 0.8)
+		#star.scale = Vector2(size, size)
+		#
+		## randomize animation speed, default is 1.0
+		#star.speed_scale = rng.randf_range(0.5,2)
+		#
+		## add it to Stars
+		#$Stars.add_child(star)
 	
 	# Background set up
 	# lower_fog= $Background/LowerFog
@@ -53,6 +55,18 @@ func _ready() -> void:
 	# lower_fog_noise.offset = Vector3(floor(fog_position.x / lower_fog.scale.x), floor(fog_position.y / lower_fog.scale.x), 0.0)
 	# print(lower_fog.offset)
 
+func resize_background(resolution: Vector2i, scale: float) -> void:
+	## Resize Parallax2D layers to specified size
+	resize_layer(resolution, scale, $Background/DeepSpaceParallax)
+	resize_layer(resolution, scale, $Background/LowerFogParallax)
+	resize_layer(resolution, scale, $Background/UpperFogParallax)
+	
+func resize_layer(resolution: Vector2i, scale: float, layer: Parallax2D) -> void:
+	## Resize an individual Parralax layer
+	var tile : Vector2 = layer.repeat_size
+	layer.repeat_times = int(ceil(max(resolution.x / tile.x, resolution.y / tile.y)) / scale)
+	
+	
 func _on_meteor_timer_timeout() -> void:
 	pass
 	# 2. create an instance
