@@ -55,16 +55,16 @@ func _enter_tree() -> void:
 	# lower_fog_noise.offset = Vector3(floor(fog_position.x / lower_fog.scale.x), floor(fog_position.y / lower_fog.scale.x), 0.0)
 	# print(lower_fog.offset)
 
-func resize_background(resolution: Vector2i, scale: float) -> void:
+func resize_background(resolution: Vector2i, size: float) -> void:
 	## Resize Parallax2D layers to specified size
-	resize_layer(resolution, scale, $Background/DeepSpaceParallax)
-	resize_layer(resolution, scale, $Background/LowerFogParallax)
-	resize_layer(resolution, scale, $Background/UpperFogParallax)
+	resize_layer(resolution, size, $Background/DeepSpaceParallax)
+	resize_layer(resolution, size, $Background/LowerFogParallax)
+	resize_layer(resolution, size, $Background/UpperFogParallax)
 	
-func resize_layer(resolution: Vector2i, scale: float, layer: Parallax2D) -> void:
+func resize_layer(resolution: Vector2i, size: float, layer: Parallax2D) -> void:
 	## Resize an individual Parralax layer
 	var tile : Vector2 = layer.repeat_size
-	layer.repeat_times = int(ceil(max(resolution.x / tile.x, resolution.y / tile.y)) / scale)
+	layer.repeat_times = int(ceil(max(resolution.x / tile.x, resolution.y / tile.y)) / size)
 	
 	
 func _on_meteor_timer_timeout() -> void:

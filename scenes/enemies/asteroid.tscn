@@ -2,15 +2,31 @@
 
 [ext_resource type="Script" uid="uid://76brws2ddqj8" path="res://scenes/enemies/asteroid.gd" id="1_jrb2b"]
 [ext_resource type="Texture2D" uid="uid://b5jwx5kj6yv3m" path="res://resources/enemies/asteroid.png" id="1_uu3pj"]
+[ext_resource type="PackedScene" uid="uid://cnjsooxdl45bi" path="res://scenes/components/health_component.tscn" id="2_08eb2"]
+[ext_resource type="PackedScene" uid="uid://dj6xbcqgpfgm6" path="res://scenes/components/hitbox_component.tscn" id="3_2h6hj"]
+[ext_resource type="PackedScene" uid="uid://bv4lre2golhgb" path="res://scenes/components/attack_component.tscn" id="3_j2n00"]
 
 [node name="Asteroid" type="Node2D" unique_id=2098577152]
 script = ExtResource("1_jrb2b")
 
-[node name="AsteroidBody" type="RigidBody2D" parent="." unique_id=2036531934]
-
-[node name="AsteroidCollision" type="CollisionPolygon2D" parent="AsteroidBody" unique_id=263734754]
-polygon = PackedVector2Array(-5, -8, 7, -8, 7, -7, 9, -7, 9, -6, 10, -6, 10, 3, 9, 3, 9, 4, 8, 4, 8, 5, 2, 5, 2, 6, 0, 6, 0, 8, -1, 8, -1, 9, -8, 9, -8, 8, -10, 8, -10, 7, -11, 7, -11, 0, -10, 0, -10, -3, -9, -3, -9, -4, -7, -4, -7, -5, -6, -5, -6, -6, -5, -6)
-
 [node name="AsteroidImage" type="Sprite2D" parent="." unique_id=1981989945]
 texture_filter = 1
 texture = ExtResource("1_uu3pj")
+
+[node name="ContactAttack" parent="." unique_id=1865292807 instance=ExtResource("3_j2n00")]
+attack_damage = 5.0
+
+[node name="HealthComponent" parent="." unique_id=1795903657 instance=ExtResource("2_08eb2")]
+max_health = 10.0
+current_health = 10.0
+
+[node name="HitboxComponent" parent="." unique_id=303427533 node_paths=PackedStringArray("health", "contact_attack") instance=ExtResource("3_2h6hj")]
+collision_mask = 9
+health = NodePath("../HealthComponent")
+contact_attack = NodePath("../ContactAttack")
+
+[node name="AsteroidCollision" type="CollisionPolygon2D" parent="HitboxComponent" unique_id=263734754]
+polygon = PackedVector2Array(-5, -8, 7, -8, 7, -7, 9, -7, 9, -6, 10, -6, 10, 3, 9, 3, 9, 4, 8, 4, 8, 5, 2, 5, 2, 6, 0, 6, 0, 8, -1, 8, -1, 9, -8, 9, -8, 8, -10, 8, -10, 7, -11, 7, -11, 0, -10, 0, -10, -3, -9, -3, -9, -4, -7, -4, -7, -5, -6, -5, -6, -6, -5, -6)
+
+[connection signal="health_reached_zero" from="HealthComponent" to="." method="_on_health_component_health_reached_zero"]
+[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]

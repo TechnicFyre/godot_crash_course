@@ -27,7 +27,7 @@ func _ready() -> void:
 	# get_tree().paused = true
 
 # ------------------------------------------------------------------------------
-# Screen resolution management
+#region Screen resolution management
 # ------------------------------------------------------------------------------
 func _update_window_size() -> void:
 	## Scales the UI and Game according to the size of the window
@@ -37,21 +37,21 @@ func _update_window_size() -> void:
 	get_window().content_scale_factor = ratio
 	# Background Repeat
 	GameWorld.resize_background(resolution, ratio)
-	
+#endregion
 
 # ------------------------------------------------------------------------------
-# Screen management
+#region Screen management
 # ------------------------------------------------------------------------------
 
 # Hide the main menu, open game
 func _on_main_menu_play_button_pressed() -> void:
-	print("Main says: _on_main_menu_play_button_pressed() signal triggered")
+	# print("Main says: _on_main_menu_play_button_pressed() signal triggered")
 	self.add_child(GameWorld)
 	self.remove_child(MainMenu)
 
 # Hide the main menu, open settings
 func _on_main_menu_settings_button_pressed() -> void:
-	print("Main says: _on_main_menu_settings_button_pressed() signal triggered")
+	# print("Main says: _on_main_menu_settings_button_pressed() signal triggered")
 	self.add_child(Settings)
 	self.remove_child(MainMenu)
 
@@ -86,3 +86,4 @@ func _on_main_menu_credits_button_pressed() -> void:
 # Hide the upgrades, open game
 
 # Hide the upgrades, open settings
+#endregion

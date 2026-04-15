@@ -2,23 +2,29 @@
 
 [ext_resource type="Script" uid="uid://dhohv46bdt1nu" path="res://scenes/laser.gd" id="1_a7dhc"]
 [ext_resource type="Texture2D" uid="uid://d0tgekaenvus1" path="res://resources/lasers/laserBlue01.png" id="1_xmihv"]
+[ext_resource type="PackedScene" uid="uid://dj6xbcqgpfgm6" path="res://scenes/components/hitbox_component.tscn" id="3_412cd"]
+[ext_resource type="PackedScene" uid="uid://bv4lre2golhgb" path="res://scenes/components/attack_component.tscn" id="4_q8rul"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a7dhc"]
 radius = 5.0
 height = 56.0
 
-[node name="Laser" type="Area2D" unique_id=345632229]
+[node name="Laser" type="Node2D" unique_id=138523721]
 rotation = -1.5707964
-collision_layer = 8
-collision_mask = 2
 script = ExtResource("1_a7dhc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=624862158]
 rotation = 1.5707964
 texture = ExtResource("1_xmihv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2108684864]
+[node name="HitboxComponent" parent="." unique_id=34083976 node_paths=PackedStringArray("contact_attack") instance=ExtResource("3_412cd")]
+collision_layer = 8
+collision_mask = 2
+contact_attack = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=2108684864]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_a7dhc")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="AttackComponent" parent="." unique_id=1865292807 instance=ExtResource("4_q8rul")]
+attack_damage = 5.0
