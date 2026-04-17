@@ -15,6 +15,7 @@ var lower_fog_noise
 func _enter_tree() -> void:
 	get_tree().call_group('UI', 'set_health', health)
 	
+	$Meteors/Asteroid.prepare($Player)
 	# for calculating positions later
 	#var width := get_viewport_rect().size[0]
 	#var height := get_viewport_rect().size[1]
