@@ -2,6 +2,7 @@ extends Node2D
 
 var meteor_scene: PackedScene = load("res://scenes/meteor.tscn")
 var laser_scene: PackedScene = load("res://scenes/laser.tscn")
+var asteroid_scene: PackedScene = load("uid://bxgdcmlt57wtw")
 
 var health: int = 5
 
@@ -10,12 +11,13 @@ var rng := RandomNumberGenerator.new()
 var lower_fog
 var lower_fog_noise
 
+enum ScreenSides {LEFT, RIGHT, UPPER, LOWER}
+
 # func _enter_tree() -> void:
 
 func _enter_tree() -> void:
 	get_tree().call_group('UI', 'set_health', health)
 	
-	$Meteors/Asteroid.prepare($Player)
 	# for calculating positions later
 	#var width := get_viewport_rect().size[0]
 	#var height := get_viewport_rect().size[1]
@@ -104,5 +106,32 @@ func _on_player_laser(laser_position, laser_rotation) -> void:
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	pass
+	# Determine border of the screen
+	var center = get_viewport().get_camera_2d().get_screen_center_position()
+	var size = get_viewport_rect().size
+	var upper_left = center - size / 2
+	var lower_right = center + size / 2
 	
+	# Get random position to spawn enemy
+	# x values increase from left to right
+	# y values increase from top to bottom
+	var side = ScreenSides.values().pick_random()
+	
+	var spawn_position : Vector2
+	const SPAWN_MARGIN = 100
+	match side:
+		ScreenSides.LEFT:
+			spawn_position = Vector2(randf_range(upper_left.x - SPAWN_MARGIN, upper_left.x), randf_range(upper_left.y, lower_right.y))
+		ScreenSides.RIGHT:
+			spawn_position = Vector2(randf_range(lower_right.x, lower_right.x + SPAWN_MARGIN), randf_range(upper_left.y, lower_right.y))
+		ScreenSides.UPPER:
+			spawn_position = Vector2(randf_range(upper_left.x, lower_right.x), randf_range(upper_left.y - SPAWN_MARGIN, upper_left.y))
+		ScreenSides.LOWER:
+			spawn_position = Vector2(randf_range(upper_left.x, lower_right.x), randf_range(lower_right.y, lower_right.y + SPAWN_MARGIN))
+	
+	print(spawn_position)
+	# Spawn an enemy
+	var enemy : Asteroid = asteroid_scene.instantiate()
+	enemy.prepare($Player, spawn_position)
+	
+	$Meteors.add_child(enemy)
