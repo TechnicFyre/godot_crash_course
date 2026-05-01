@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bhpal3f6iu8rh" path="res://resources/background/upper_fog.png" id="4_odt01"]
 [ext_resource type="PackedScene" uid="uid://d2dq5whl44u3l" path="res://scenes/player.tscn" id="5_dlaip"]
 [ext_resource type="Script" uid="uid://bmq6ilv0rfg42" path="res://scenes/enemy_timer.gd" id="6_u4x5r"]
-[ext_resource type="PackedScene" uid="uid://bk83jos8ao2lk" path="res://scenes/ui.tscn" id="7_4xvvt"]
+[ext_resource type="PackedScene" uid="uid://bk83jos8ao2lk" path="res://scenes/hud.tscn" id="7_4xvvt"]
 [ext_resource type="AudioStream" uid="uid://ce08p6lyx88kg" path="res://resources/audio/meteor_destroy.ogg" id="8_oyepb"]
 [ext_resource type="AudioStream" uid="uid://bms8q2na0y7w8" path="res://resources/audio/ship_destroy.ogg" id="9_xxaiy"]
 [ext_resource type="AudioStream" uid="uid://bwnsm2vi56h3o" path="res://resources/audio/ship_damage.ogg" id="10_mf52o"]
@@ -152,7 +152,7 @@ metadata/_edit_lock_ = true
 [node name="Lasers" type="Node2D" parent="." unique_id=1096152415]
 metadata/_edit_lock_ = true
 
-[node name="UI" parent="." unique_id=1728256441 instance=ExtResource("7_4xvvt")]
+[node name="HUD" parent="." unique_id=1728256441 instance=ExtResource("7_4xvvt")]
 
 [node name="Audio" type="Node2D" parent="." unique_id=801174914]
 visible = false

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bk83jos8ao2lk"]
+
+[ext_resource type="Script" uid="uid://dgrhtj5ayokhk" path="res://scenes/hud.gd" id="1_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://jvhpqd0yey0p" path="res://resources/currencies/currencies_background.png" id="2_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://dflo6efu4sl58" path="res://resources/currencies/stardust.png" id="3_047uy"]
+[ext_resource type="FontFile" uid="uid://fjnoc0ewo0vw" path="res://resources/font/Kenney Future.ttf" id="4_5pdws"]
+[ext_resource type="FontFile" uid="uid://becofv1yefsn0" path="res://resources/font/AGoblinAppears-o2aV.ttf" id="4_uo2fv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gdt2y"]
+font_size = 5
+
+[node name="HUD" type="CanvasLayer" unique_id=1728256441 groups=["UI"]]
+script = ExtResource("1_6fi6k")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=673041640]
+texture_filter = 1
+texture = ExtResource("2_uo2fv")
+stretch_mode = 2
+
+[node name="Stardust" type="HBoxContainer" parent="TextureRect" unique_id=1342672940]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04347826
+anchor_top = 0.14814815
+anchor_right = 0.04347826
+anchor_bottom = 0.14814815
+offset_right = 103.0
+offset_bottom = 16.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StardustImage" type="TextureRect" parent="TextureRect/Stardust" unique_id=1381334163]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_047uy")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/Stardust" unique_id=1916267228]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_uo2fv")
+theme_override_font_sizes/font_size = 7
+text = "Test',9,876,543,210"
+
+[node name="CurrenciesMargin" type="MarginContainer" parent="." unique_id=471355466]
+visible = false
+offset_right = 104.0
+offset_bottom = 93.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CurrenciesBackground" type="NinePatchRect" parent="CurrenciesMargin" unique_id=1156248720]
+visible = false
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_uo2fv")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 1
+patch_margin_bottom = 1
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="CurrenciesList" type="VBoxContainer" parent="CurrenciesMargin/CurrenciesBackground" unique_id=1957292885]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 43.0
+
+[node name="LightMotes" type="HBoxContainer" parent="CurrenciesMargin/CurrenciesBackground/CurrenciesList" unique_id=840581530]
+visible = false
+layout_mode = 2
+
+[node name="LightMotesImage" type="TextureRect" parent="CurrenciesMargin/CurrenciesBackground/CurrenciesList/LightMotes" unique_id=1048242740]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_047uy")
+stretch_mode = 3
+
+[node name="LightMotesAmount" type="Label" parent="CurrenciesMargin/CurrenciesBackground/CurrenciesList/LightMotes" unique_id=1812039768]
+layout_mode = 2
+text = "10"
+label_settings = SubResource("LabelSettings_gdt2y")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=273469414]
+visible = false
+offset_right = 33.0
+offset_bottom = 55.0
+theme_override_constants/margin_top = 10
+
+[node name="Score" type="Label" parent="MarginContainer" unique_id=1510224292]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93333334, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_5pdws")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1748057154]
+visible = false
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 636.0
+offset_bottom = 356.0
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1684099906]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=763536858]
+autostart = true
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

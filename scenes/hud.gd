@@ -20,4 +20,4 @@ func set_health(amount):
 
 func _on_score_timer_timeout():
 	PlayerInfo.score += 1
-	$MarginContainer/Score.text = str(PlayerInfo.score)
+	# $MarginContainer/Score.text = str(PlayerInfo.score)
